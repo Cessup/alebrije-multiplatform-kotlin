@@ -1,0 +1,7 @@
+TEAM_ID=
+
+PRODUCT_NAME=alebrije_multiplatform_kotlin
+PRODUCT_BUNDLE_IDENTIFIER=com.cessup.alebrije_multiplatform_kotlin.alebrije_multiplatform_kotlin$(TEAM_ID)
+
+CURRENT_PROJECT_VERSION=1
+MARKETING_VERSION=1.0
