@@ -1,0 +1,87 @@
+name: Alebrije KMP CI
+
+on:
+  push:
+    branches: [ develop ]
+  pull_request:
+    branches: [ develop ]
+
+jobs:
+  # --- JVM and JS (Linux)
+  build-linux:
+    name: JVM & JS Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - name: Set up Node (for Kotlin/JS)
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Grant execute permission to gradlew
+        run: chmod +x ./gradlew
+
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Build JVM and JS targets
+        run: ./gradlew build
+
+      - name: Run all tests
+        run: ./gradlew allTests
+
+      - name: Upload JVM/JS artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: jvm-js-artifacts
+          path: build/
+          
+      - name: Cache Gradle dependencies
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: gradle-${{ runner.os }}-${{ hashFiles('**/*.gradle.kts') }}
+          restore-keys: |
+            gradle-${{ runner.os }}-
+
+
+  # --- Native (macOS)
+  build-macos:
+    name: Native iOS & macOS Build
+    runs-on: macos-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - name: Grant execute permission to gradlew
+        run: chmod +x ./gradlew
+
+      - name: Build iOS and macOS frameworks
+        run: |
+          ./gradlew linkDebugFrameworkIosX64
+          ./gradlew linkDebugFrameworkMacosX64
+
+      - name: Upload native frameworks
+        uses: actions/upload-artifact@v4
+        with:
+          name: native-frameworks
+          path: |
+            build/bin/iosX64/debugFramework/
+            build/bin/macosX64/debugFramework/
+      
