@@ -1,4 +1,28 @@
+# Alebrije Kotlin Multiplatform App
+
+[![License](https://img.shields.io/github/license/Cessup/alebrije-multiplatform-kotlin
+)](https://opensource.org/licenses/Apache-2.0)
+
 This is a Kotlin Multiplatform project targeting Android, iOS, Web, Desktop (JVM).
+
+> The project is also available [with native UI written in Jetpack Compose and SwiftUI](https://github.com/Cessup/alebrije-multiplatform-kotlin).
+>
+> The [`develop` branch](https://github.com/Cessup/alebrije-multiplatform-kotlin) showcase a stable version.
+
+### Technologies
+
+The data displayed by the alebrije app is from [Chingon API](https://github.com/Cessup/chingon-general-api-ktor/).
+
+The app uses the following multiplatform dependencies in its implementation:
+
+- [Compose Multiplatform](https://jb.gg/compose) for UI
+- [Ktor](https://ktor.io/) for networking
+- [kotlinx.serialization](https://github.com/Kotlin/kotlinx.serialization) for JSON handling
+- [Kamel](https://github.com/Kamel-Media/Kamel) for image loading
+- [Koin](https://github.com/InsertKoinIO/koin) for dependency injection
+
+> The libraries are going to update when any project will absolute but before data we'll notify you. But you are free to use anything libraries in thins project because that is just a example.
+### Modules Project
 
 * [/composeApp](./composeApp/src) is for code that will be shared across your Compose Multiplatform applications.
   It contains several subfolders:
@@ -16,7 +40,9 @@ This is a Kotlin Multiplatform project targeting Android, iOS, Web, Desktop (JVM
   The most important subfolder is [commonMain](./shared/src/commonMain/kotlin). If preferred, you
   can add code to the platform-specific folders here too.
 
-### Build and Run Android Application
+## Build and Run
+
+### Android Application
 
 To build and run the development version of the Android app, use the run configuration from the run widget
 in your IDE’s toolbar or build it directly from the terminal:
@@ -30,7 +56,7 @@ in your IDE’s toolbar or build it directly from the terminal:
   .\gradlew.bat :composeApp:assembleDebug
   ```
 
-### Build and Run Desktop (JVM) Application
+### Desktop (JVM) Application
 
 To build and run the development version of the desktop app, use the run configuration from the run widget
 in your IDE’s toolbar or run it directly from the terminal:
@@ -44,7 +70,7 @@ in your IDE’s toolbar or run it directly from the terminal:
   .\gradlew.bat :composeApp:run
   ```
 
-### Build and Run Web Application
+### Web Application
 
 To build and run the development version of the web app, use the run configuration from the run widget
 in your IDE’s toolbar or run it directly from the terminal:
@@ -58,17 +84,14 @@ in your IDE’s toolbar or run it directly from the terminal:
   .\gradlew.bat :composeApp:wasmJsBrowserDevelopmentRun
   ```
 
-### Build and Run iOS Application
+### iOS Application
 
 To build and run the development version of the iOS app, use the run configuration from the run widget
 in your IDE’s toolbar or open the [/iosApp](./iosApp) directory in Xcode and run it from there.
 
 ---
 
+### About Kotlin Multiplatform
 Learn more about [Kotlin Multiplatform](https://www.jetbrains.com/help/kotlin-multiplatform-dev/get-started.html),
 [Compose Multiplatform](https://github.com/JetBrains/compose-multiplatform/#compose-multiplatform),
 [Kotlin/Wasm](https://kotl.in/wasm/)…
-
-We would appreciate your feedback on Compose/Web and Kotlin/Wasm in the public Slack
-channel [#compose-web](https://slack-chats.kotlinlang.org/c/compose-web).
-If you face any issues, please report them on [YouTrack](https://youtrack.jetbrains.com/newIssue?project=CMP).
