@@ -3,7 +3,7 @@
 [![License](https://img.shields.io/github/license/Cessup/alebrije-multiplatform-kotlin
 )](https://opensource.org/licenses/Apache-2.0)
 [![Workflow](https://img.shields.io/github/actions/workflow/status/Cessup/alebrije-multiplatform-kotlin/.github%2Fworkflows%2Falebrije-kmp-ci.yml
-)](https://github.com/Cessup/alebrije-multiplatform-kotlin/blob/develop/.github/workflows/alebrije-kmp-ci.yml)
+)](https://github.com/Cessup/alebrije-multiplatform-kotlin/actions)
 [![Commit](https://img.shields.io/github/last-commit/Cessup/alebrije-multiplatform-kotlin
 )](https://github.com/Cessup/alebrije-multiplatform-kotlin)
 
