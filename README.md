@@ -2,6 +2,12 @@
 
 [![License](https://img.shields.io/github/license/Cessup/alebrije-multiplatform-kotlin
 )](https://opensource.org/licenses/Apache-2.0)
+[![Workflow](https://img.shields.io/github/actions/workflow/status/Cessup/alebrije-multiplatform-kotlin/.github%2Fworkflows%2Falebrije-kmp-ci.yml
+)](https://github.com/Cessup/alebrije-multiplatform-kotlin/blob/develop/.github/workflows/alebrije-kmp-ci.yml)
+[![Commit](https://img.shields.io/github/last-commit/Cessup/alebrije-multiplatform-kotlin
+)](https://github.com/Cessup/alebrije-multiplatform-kotlin)
+
+
 
 This is a Kotlin Multiplatform project targeting Android, iOS, Web, Desktop (JVM).
 
@@ -22,6 +28,7 @@ The app uses the following multiplatform dependencies in its implementation:
 - [Koin](https://github.com/InsertKoinIO/koin) for dependency injection
 
 > The libraries are going to update when any project will absolute but before data we'll notify you. But you are free to use anything libraries in thins project because that is just a example.
+
 ### Modules Project
 
 * [/composeApp](./composeApp/src) is for code that will be shared across your Compose Multiplatform applications.
