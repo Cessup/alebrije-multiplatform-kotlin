@@ -86,7 +86,6 @@ jobs:
       - name: Build iOS and macOS frameworks
         run: |
           ./gradlew linkDebugFrameworkIosSimulatorArm64
-          ./gradlew linkDebugFrameworkMacosX64
 
       - name: Upload native frameworks
         uses: actions/upload-artifact@v4
