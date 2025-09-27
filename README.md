@@ -31,7 +31,7 @@ The app uses the following multiplatform dependencies in its implementation:
 > `Koin` doesn't support wasm that is the reason for use `kotlin-inject`.
 
 > [!IMPORTANT]
-> The libraries are going to update when any project will absolute but before data we'll notify you. But you are free to use anything libraries in thins project because that is just a example.
+> The libraries are going to update when any project will absolute but before data we'll notify you. But you are free to use anything libraries in this project because that is just a example.
 
 #### Adding the compiler dependencies
 
@@ -83,7 +83,7 @@ tasks.matching { it.name.startsWith("ksp") && it.name != "kspCommonMainKotlinMet
 
 ## Build and Run
 
-### Android Application
+### :green_circle: Android Application
 
 To build and run the development version of the Android app, use the run configuration from the run widget
 in your IDE’s toolbar or build it directly from the terminal:
@@ -97,7 +97,7 @@ in your IDE’s toolbar or build it directly from the terminal:
   .\gradlew.bat :composeApp:assembleDebug
   ```
 
-### Desktop (JVM) Application
+### :desktop_computer: Desktop (JVM) Application
 
 To build and run the development version of the desktop app, use the run configuration from the run widget
 in your IDE’s toolbar or run it directly from the terminal:
@@ -111,7 +111,7 @@ in your IDE’s toolbar or run it directly from the terminal:
   .\gradlew.bat :composeApp:run
   ```
 
-### Web Application
+### :earth_americas: Web Application
 
 To build and run the development version of the web app, use the run configuration from the run widget
 in your IDE’s toolbar or run it directly from the terminal:
@@ -125,7 +125,7 @@ in your IDE’s toolbar or run it directly from the terminal:
   .\gradlew.bat :composeApp:wasmJsBrowserDevelopmentRun
   ```
 
-### iOS Application
+### :iphone: iOS Application
 
 To build and run the development version of the iOS app, use the run configuration from the run widget
 in your IDE’s toolbar or open the [/iosApp](./iosApp) directory in Xcode and run it from there.
