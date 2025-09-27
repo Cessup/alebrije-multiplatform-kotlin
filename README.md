@@ -9,7 +9,7 @@
 
 
 
-This is a Kotlin Multiplatform project targeting Android, iOS, Web, Desktop (JVM).
+This is a Kotlin Multiplatform project targeting Android, iOS, Web, Desktop (JVM). It is an application to make some module to a ecommerce but that contains some general features.
 
 > The project is also available [with native UI written in Jetpack Compose and SwiftUI](https://github.com/Cessup/alebrije-multiplatform-kotlin).
 >
@@ -129,6 +129,9 @@ in your IDE’s toolbar or run it directly from the terminal:
 
 To build and run the development version of the iOS app, use the run configuration from the run widget
 in your IDE’s toolbar or open the [/iosApp](./iosApp) directory in Xcode and run it from there.
+
+> [!WARNING]
+> Directly running or emulating native iOS applications on a Windows machine within IntelliJ IDEA is not possible. This is due to Apple's ecosystem requirements, which mandate the use of macOS for building and running iOS applications and emulators.
 
 ---
 
