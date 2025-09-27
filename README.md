@@ -30,6 +30,7 @@ The app uses the following multiplatform dependencies in its implementation:
 > [!NOTE]
 > `Koin` doesn't support wasm that is the reason for use `kotlin-inject`.
 
+> [!IMPORTANT]
 > The libraries are going to update when any project will absolute but before data we'll notify you. But you are free to use anything libraries in thins project because that is just a example.
 
 #### Adding the compiler dependencies
