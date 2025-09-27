@@ -25,9 +25,42 @@ The app uses the following multiplatform dependencies in its implementation:
 - [Ktor](https://ktor.io/) for networking
 - [kotlinx.serialization](https://github.com/Kotlin/kotlinx.serialization) for JSON handling
 - [Kamel](https://github.com/Kamel-Media/Kamel) for image loading
-- [Koin](https://github.com/InsertKoinIO/koin) for dependency injection
+- [Kotlin-inject](https://github.com/evant/kotlin-inject?tab=readme-ov-file) for dependency injection
+
+> [!NOTE]
+> `Koin` doesn't support wasm that is the reason for use `kotlin-inject`.
 
 > The libraries are going to update when any project will absolute but before data we'll notify you. But you are free to use anything libraries in thins project because that is just a example.
+
+#### Adding the compiler dependencies
+
+When configuring KSP for use with kotlin-inject, you can choose to generate the code into:
+
+1. The common source set ([see below](#ksp-common-source-set-configuration) for the implementation of `configureCommonMainKsp`)
+2. Each individual KMP target source set
+
+You can see it in a top level `dependencies` block
+
+> [!TIP]
+> There is a good chance that the API for adding KSP compiler dependencies will change in the future.
+
+```kotlin
+dependencies {
+    // 1. Configure code generation into the common source set
+    kspCommonMainMetadata(libs.kotlinInject.compiler)
+
+    // 2. Configure code generation into each KMP target source set
+    add("kspAndroid", libs.kotlinInject.compiler)
+    add("kspIosX64", libs.kotlinInject.compiler)
+    add("kspIosArm64", libs.kotlinInject.compiler)
+    add("kspIosSimulatorArm64", libs.kotlinInject.compiler)
+    // add more targets here...
+}
+
+tasks.matching { it.name.startsWith("ksp") && it.name != "kspCommonMainKotlinMetadata" }.configureEach {
+    dependsOn("kspCommonMainKotlinMetadata")
+}
+```
 
 ### Modules Project
 

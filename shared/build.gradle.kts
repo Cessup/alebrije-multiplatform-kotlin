@@ -30,20 +30,17 @@ kotlin {
     @OptIn(ExperimentalWasmDsl::class)
     wasmJs {
         browser()
+        binaries.executable()
     }
 
     sourceSets {
         commonMain.dependencies {
             // put your Multiplatform dependencies here
-            // Koin
-            implementation(libs.koin.core)
-            // Koin Annotations
-            api(libs.koin.annotations)
+            implementation(libs.kotlininject.runtime)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
         }
-
 
         // KSP Common sourceSet
         sourceSets.named("commonMain").configure {
@@ -66,11 +63,11 @@ android {
 
 // KSP Tasks
 dependencies {
-    add("kspCommonMainMetadata", libs.koin.ksp.compiler)
-    add("kspAndroid", libs.koin.ksp.compiler)
-    add("kspIosArm64", libs.koin.ksp.compiler)
-    add("kspIosSimulatorArm64", libs.koin.ksp.compiler)
+    add("kspCommonMainMetadata", libs.kotlininject.compiler)
+    add("kspJvm", libs.kotlininject.compiler)
+    add("kspWasmJs", libs.kotlininject.compiler)
 }
+
 
 // Trigger Common Metadata Generation from Native tasks
 tasks.matching { it.name.startsWith("ksp") && it.name != "kspCommonMainKotlinMetadata" }.configureEach {
