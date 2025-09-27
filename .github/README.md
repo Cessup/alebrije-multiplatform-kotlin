@@ -18,6 +18,6 @@ This is a Kotlin Multiplatform project targeting Android, iOS, Web, Desktop (JVM
 
 ## Support
 
-If you need help, please check our [SUPPORT.md](./.github/SUPPORT.md) page.
+If you need help, please check our [SUPPORT.md](./SUPPORT.md) page.
 
 
