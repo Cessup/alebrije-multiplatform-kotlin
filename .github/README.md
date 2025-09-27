@@ -16,3 +16,8 @@ This is a Kotlin Multiplatform project targeting Android, iOS, Web, Desktop (JVM
 > The [`develop` branch](https://github.com/Cessup/alebrije-multiplatform-kotlin) showcase a stable version.
 
 
+## Support
+
+If you need help, please check our [SUPPORT.md](./.github/SUPPORT.md) page.
+
+
