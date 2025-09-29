@@ -43,7 +43,7 @@ kotlin {
             implementation(projects.shared)
 
             implementation(libs.navigation.compose)
-            implementation("io.coil-kt.coil3:coil-compose:3.3.0")
+            implementation(libs.coil.compose)
 
         }
         commonTest.dependencies {
@@ -53,6 +53,7 @@ kotlin {
             implementation(compose.desktop.currentOs)
             implementation(libs.kotlinx.coroutinesSwing)
         }
+
     }
 }
 

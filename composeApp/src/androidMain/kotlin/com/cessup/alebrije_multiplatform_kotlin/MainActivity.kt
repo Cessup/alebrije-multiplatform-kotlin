@@ -6,6 +6,8 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
+import com.cessup.alebrije_multiplatform_kotlin.navigation.AppNavHost
+import com.cessup.alebrije_multiplatform_kotlin.ui.theme.AlebrijeTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -13,7 +15,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         setContent {
-            App()
+            AppNavHost()
         }
     }
 }
@@ -21,5 +23,7 @@ class MainActivity : ComponentActivity() {
 @Preview
 @Composable
 fun AppAndroidPreview() {
-    App()
+    AlebrijeTheme {
+        AppNavHost()
+    }
 }

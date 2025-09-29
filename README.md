@@ -15,6 +15,8 @@ This is a Kotlin Multiplatform project targeting Android, iOS, Web, Desktop (JVM
 >
 > The [`develop` branch](https://github.com/Cessup/alebrije-multiplatform-kotlin) showcase a stable version.
 
+![Example Image](images/alebrije_app_multiplatform_sign_in.png)
+
 
 ## Modules Project
 
@@ -133,6 +135,52 @@ in your IDE’s toolbar or open the [/iosApp](iosApp) directory in Xcode and run
 
 > [!WARNING]
 > Directly running or emulating native iOS applications on a Windows machine within IntelliJ IDEA is not possible. This is due to Apple's ecosystem requirements, which mandate the use of macOS for building and running iOS applications and emulators.
+
+
+<details>
+
+<summary>Fix shared module to ios app</summary>
+
+### Advance Configuration
+
+If you have some problems when you open this project is because the configuration wasn't correctly so you need do extra steps. 
+
+1. Open your project in Xcode. 
+2. In the Project Navigator, click your iOS app target (iosApp)
+3. Go to the "Build Phases" tab and you look for a phase labeled something like:
+
+- only on macOS
+  ```shell
+  if [ "YES" = "$OVERRIDE_KOTLIN_BUILD_IDE_SUPPORTED" ]; then
+  echo "Skipping Gradle build task invocation due to OVERRIDE_KOTLIN_BUILD_IDE_SUPPORTED environment variable set to \"YES\""
+  exit 0
+  fi
+  cd "$SRCROOT/.."
+  ./gradlew :shared:embedAndSignAppleFrameworkForXcode
+  ```
+> [!IMPORTANT]
+> It is essential to delete the previous code
+
+4. Compile Kotlin Framework
+- only on macOS
+  ```shell
+  ./gradlew :shared:embedAndSignAppleFrameworkForXcode
+  ```
+
+5. Run the next command
+- only on macOS
+  ```shell
+  ./gradlew :shared:assembleXCFramework
+  ```
+6. Copy the .xcframework into your iOS project:
+- only on macOS
+  ```shell
+  mkdir -p iosApp/Frameworks
+  cp -R shared/build/XCFrameworks/debug/shared.xcframework iosApp/Frameworks/
+  ```
+Finally, In your Xcode clean the project and you can run it.
+
+</details>
 
 ---
 

@@ -1,5 +1,7 @@
 import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
+import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
 import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpackConfig
 
 plugins {
@@ -16,6 +18,7 @@ kotlin {
     }
 
     listOf(
+        iosX64(),
         iosArm64(),
         iosSimulatorArm64()
     ).forEach { iosTarget ->
@@ -34,12 +37,39 @@ kotlin {
     }
 
     sourceSets {
-        commonMain.dependencies {
-            // put your Multiplatform dependencies here
-            implementation(libs.kotlininject.runtime)
+
+        val commonMain by getting {
+            dependencies {
+                // Common dependencies for all platforms
+                implementation(libs.kotlininject.runtime)
+                implementation(libs.ktor.client.core)
+                implementation(libs.ktor.client.content.negotiation)
+                implementation(libs.ktor.serialization.kotlinx.json)
+            }
         }
-        commonTest.dependencies {
-            implementation(libs.kotlin.test)
+
+        val androidMain by getting {
+            dependencies {
+                implementation(libs.ktor.client.android)
+            }
+        }
+
+        val commonTest by getting {
+            dependencies {
+                implementation(libs.kotlin.test)
+            }
+        }
+
+        // ✅ Define an XCFramework
+        val xcFramework = XCFramework()
+
+        listOf(
+            targets.getByName("iosX64"),
+            targets.getByName("iosArm64"),
+            targets.getByName("iosSimulatorArm64")
+        ).forEach {
+            val framework = (it as KotlinNativeTarget).binaries.getFramework("DEBUG")
+            xcFramework.add(framework)
         }
 
         // KSP Common sourceSet
@@ -72,4 +102,10 @@ dependencies {
 // Trigger Common Metadata Generation from Native tasks
 tasks.matching { it.name.startsWith("ksp") && it.name != "kspCommonMainKotlinMetadata" }.configureEach {
     dependsOn("kspCommonMainKotlinMetadata")
+}
+
+tasks.register<Copy>("copyXCFrameworkToIos") {
+    dependsOn("assembleXCFramework")
+    from(buildDir.resolve("XCFrameworks/debug/shared.xcframework"))
+    into(rootProject.file("iosApp/Frameworks"))
 }
