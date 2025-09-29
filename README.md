@@ -8,6 +8,8 @@
 )](https://github.com/Cessup/alebrije-multiplatform-kotlin)
 
 
+![Example Image App](images/alebrije_app_banner.svg)
+
 
 This is a Kotlin Multiplatform project targeting Android, iOS, Web, Desktop (JVM). It is an application to make some module to a ecommerce but that contains some general features.
 
@@ -15,7 +17,7 @@ This is a Kotlin Multiplatform project targeting Android, iOS, Web, Desktop (JVM
 >
 > The [`develop` branch](https://github.com/Cessup/alebrije-multiplatform-kotlin) showcase a stable version.
 
-![Example Image](images/alebrije_app_multiplatform_sign_in.png)
+![Example Image App](images/alebrije_app_multiplatform_sign_in.png)
 
 
 ## Modules Project

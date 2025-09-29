@@ -13,6 +13,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '18' # or 20, avoid 21+
+          cache: 'yarn'
+
+      - run: npm install -g yarn
+
+      - run: yarn install --frozen-lockfile
+
       - uses: actions/checkout@v4
 
       - name: Set up Java
