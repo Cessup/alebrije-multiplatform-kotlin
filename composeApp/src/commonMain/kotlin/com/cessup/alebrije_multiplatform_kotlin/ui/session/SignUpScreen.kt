@@ -39,8 +39,7 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
  */
 @Composable
 fun SignUpScreen(
-    onSignUpClick: () -> Unit,
-    viewModel: SignInViewModel = viewModel { SignInViewModel() }
+    onSignUpClick: () -> Unit
 ) {
 
     var username by remember { mutableStateOf("") }
