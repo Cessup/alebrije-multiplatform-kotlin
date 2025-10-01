@@ -19,6 +19,9 @@ kotlinx-coroutines = "1.10.2"
 ksp = "2.2.20-2.0.2"
 ktorClientCore = "3.3.0"
 navigationCompose = "2.9.0"
+sqlDelight = "2.1.0"
+dateTimeVersion = "0.7.1"
+
 
 [libraries]
 #UI
@@ -27,6 +30,7 @@ androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "a
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activity" }
 coil-compose = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coilCompose" }
 kotlinx-coroutinesSwing = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-swing", version.ref = "kotlinx-coroutines" }
+kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "dateTimeVersion" }
 ktor-client-cio = { module = "io.ktor:ktor-client-cio", version.ref = "ktorClientCore" }
 ktor-client-js = { module = "io.ktor:ktor-client-js", version.ref = "ktorClientCore" }
 navigation-compose = { module = "org.jetbrains.androidx.navigation:navigation-compose", version.ref = "navigationCompose" }
@@ -49,6 +53,10 @@ androidx-espresso-core = { module = "androidx.test.espresso:espresso-core", vers
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
 kotlin-testJunit = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref = "kotlin" }
 androidx-testExt-junit = { module = "androidx.test.ext:junit", version.ref = "androidx-testExt" }
+#database
+android-driver = { module = "app.cash.sqldelight:android-driver", version.ref = "sqlDelight" }
+native-driver = { module = "app.cash.sqldelight:native-driver", version.ref = "sqlDelight" }
+runtime = { module = "app.cash.sqldelight:runtime", version.ref = "sqlDelight" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
@@ -58,3 +66,4 @@ composeMultiplatform = { id = "org.jetbrains.compose", version.ref = "composeMul
 composeCompiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 kspMultiplatform = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+sqldelight = { id = "app.cash.sqldelight", version.ref = "sqlDelight" }

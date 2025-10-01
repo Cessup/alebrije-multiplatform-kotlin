@@ -8,6 +8,7 @@ plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.kspMultiplatform)
+    alias(libs.plugins.sqldelight)
 }
 
 kotlin {
@@ -46,6 +47,8 @@ kotlin {
                 implementation(libs.ktor.client.content.negotiation)
                 implementation(libs.ktor.serialization.kotlinx.json)
                 implementation(libs.ktor.client.logging)
+                implementation(libs.runtime)
+                implementation(libs.kotlinx.datetime)
             }
         }
 
@@ -65,6 +68,7 @@ kotlin {
             dependencies {
                 implementation(libs.ktor.client.android)
                 implementation(libs.ktor.client.okhttp)
+                implementation(libs.android.driver)
             }
         }
 
@@ -72,6 +76,7 @@ kotlin {
             dependsOn(commonMain)
             dependencies {
                 implementation(libs.ktor.client.darwin)
+                implementation(libs.native.driver)
             }
         }
 
