@@ -45,14 +45,40 @@ kotlin {
                 implementation(libs.ktor.client.core)
                 implementation(libs.ktor.client.content.negotiation)
                 implementation(libs.ktor.serialization.kotlinx.json)
+                implementation(libs.ktor.client.logging)
+            }
+        }
+
+        val jvmMain by getting {
+            dependencies{
+                implementation(libs.ktor.client.cio)
+            }
+        }
+
+        val wasmJsMain by getting {
+            dependencies {
+                implementation(libs.ktor.client.js)
             }
         }
 
         val androidMain by getting {
             dependencies {
                 implementation(libs.ktor.client.android)
+                implementation(libs.ktor.client.okhttp)
             }
         }
+
+        val iosMain by creating {
+            dependsOn(commonMain)
+            dependencies {
+                implementation(libs.ktor.client.darwin)
+            }
+        }
+
+        // Connect iOS targets to iosMain
+        val iosX64Main by getting { dependsOn(iosMain) }
+        val iosArm64Main by getting { dependsOn(iosMain) }
+        val iosSimulatorArm64Main by getting { dependsOn(iosMain) }
 
         val commonTest by getting {
             dependencies {
