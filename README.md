@@ -36,7 +36,7 @@ This is a Kotlin Multiplatform project targeting Android, iOS, Web, Desktop (JVM
   The most important subfolder is [commonMain](shared/src/commonMain/kotlin). If preferred, you
   can add code to the platform-specific folders here too.
 
-Architecture modules:
+Module Diagram:
 
 ```mermaid
   sequenceDiagram
@@ -75,7 +75,7 @@ The app uses the following multiplatform dependencies in its implementation:
 - [Compose Multiplatform](https://jb.gg/compose) for UI
 - [Ktor](https://ktor.io/) for networking
 - [kotlinx.serialization](https://github.com/Kotlin/kotlinx.serialization) for JSON handling
-- [Kamel](https://github.com/Kamel-Media/Kamel) for image loading
+- [Coil](https://coil-kt.github.io/coil/) for image loading
 - [Kotlin-inject](https://github.com/evant/kotlin-inject?tab=readme-ov-file) for dependency injection
 
 > [!NOTE]
@@ -84,35 +84,6 @@ The app uses the following multiplatform dependencies in its implementation:
 > [!IMPORTANT]
 > The libraries are going to update when any project will absolute but before data we'll notify you. But you are free to use anything libraries in this project because that is just a example.
 
-### Adding the compiler dependencies
-
-When configuring KSP for use with kotlin-inject, you can choose to generate the code into:
-
-1. The common source set ([see below](#ksp-common-source-set-configuration) for the implementation of `configureCommonMainKsp`)
-2. Each individual KMP target source set
-
-You can see it in a top level `dependencies` block
-
-> [!TIP]
-> There is a good chance that the API for adding KSP compiler dependencies will change in the future.
-
-```kotlin
-dependencies {
-    // 1. Configure code generation into the common source set
-    kspCommonMainMetadata(libs.kotlinInject.compiler)
-
-    // 2. Configure code generation into each KMP target source set
-    add("kspAndroid", libs.kotlinInject.compiler)
-    add("kspIosX64", libs.kotlinInject.compiler)
-    add("kspIosArm64", libs.kotlinInject.compiler)
-    add("kspIosSimulatorArm64", libs.kotlinInject.compiler)
-    // add more targets here...
-}
-
-tasks.matching { it.name.startsWith("ksp") && it.name != "kspCommonMainKotlinMetadata" }.configureEach {
-    dependsOn("kspCommonMainKotlinMetadata")
-}
-```
 
 ## Build and Run
 
