@@ -14,8 +14,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
-import com.cessup.alebrije_multiplatform_kotlin.ui.eatable.DrinkViewModel
 
 /**
  * That is the Home for everything
@@ -29,7 +27,6 @@ import com.cessup.alebrije_multiplatform_kotlin.ui.eatable.DrinkViewModel
 @Composable
 fun HomeScreen(token: String,
                onHomeToDrinkMenu: () -> Unit,
-               viewModel: DrinkViewModel = viewModel { DrinkViewModel() }
 ) {
 
     Column(

@@ -11,5 +11,12 @@ actual class NetworkClient {
         install(ContentNegotiation) {
             json(Json { ignoreUnknownKeys = true })
         }
+        install(NetworkExceptionInterceptor)
     }
+}
+
+actual fun isNoInternetException(throwable: Throwable): Boolean {
+    val cause = throwable.cause
+    // Simplified; you may inspect NSError code here
+    return throwable.message?.contains("Network is unreachable", ignoreCase = true) == true
 }

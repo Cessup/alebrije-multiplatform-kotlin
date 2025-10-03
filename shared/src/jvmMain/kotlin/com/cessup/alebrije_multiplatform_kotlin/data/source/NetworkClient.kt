@@ -11,5 +11,12 @@ actual class NetworkClient {
         install(ContentNegotiation) {
             json(Json { ignoreUnknownKeys = true })
         }
+        install(NetworkExceptionInterceptor)
     }
+}
+
+actual fun isNoInternetException(throwable: Throwable): Boolean {
+    return throwable is java.net.UnknownHostException ||
+            throwable is java.net.ConnectException ||
+            throwable is java.net.SocketTimeoutException
 }
