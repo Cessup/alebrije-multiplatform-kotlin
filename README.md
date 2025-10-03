@@ -36,6 +36,36 @@ This is a Kotlin Multiplatform project targeting Android, iOS, Web, Desktop (JVM
   The most important subfolder is [commonMain](shared/src/commonMain/kotlin). If preferred, you
   can add code to the platform-specific folders here too.
 
+Architecture modules:
+
+```mermaid
+  sequenceDiagram
+    box purple KotlinMultiplatform
+    participant wasmJS
+    participant jvm
+    participant android
+    participant compose
+    participant shared
+    end
+    box gray Apple
+    participant iOS
+    end
+    iOS->>+shared:Logic
+    shared->>-iOS: Data
+    android->>+ compose: UI
+    compose->>+shared:Logic
+    shared->>-compose:Data
+    compose->>-android:App
+    jvm->> + compose:UI
+    compose->>+shared:Logic
+    shared->>-compose: Data
+    compose->> -jvm:App
+    wasmJS->> + compose:UI
+    compose->>+shared:Logic
+    shared->>-compose: Data
+    compose->>-wasmJS:App
+```
+
 ## Technologies
 
 The data displayed by the alebrije app is from [Chingon API](https://github.com/Cessup/chingon-general-api-ktor/).
