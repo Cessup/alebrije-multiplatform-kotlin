@@ -27,7 +27,7 @@ fun SignInScreen(
     onRegisterClick: () -> Unit,
     onForgotPasswordClick: () -> Unit,
 ) {
-    val viewModel = remember { AppGraph.component.userViewModel }
+    val viewModel = remember { AppGraph.component.signInViewModel }
 
     val state by viewModel.uiState.collectAsState()
 

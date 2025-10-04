@@ -9,6 +9,7 @@ plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.kspMultiplatform)
     alias(libs.plugins.sqldelight)
+    kotlin("plugin.serialization") version "1.9.24"
 }
 
 kotlin {
@@ -33,7 +34,11 @@ kotlin {
 
     @OptIn(ExperimentalWasmDsl::class)
     wasmJs {
-        browser()
+        browser {
+            commonWebpackConfig {
+                sourceMaps = false
+            }
+        }
         binaries.executable()
     }
 
@@ -91,7 +96,6 @@ kotlin {
             }
         }
 
-        // ✅ Define an XCFramework
         val xcFramework = XCFramework()
 
         listOf(
@@ -125,8 +129,6 @@ android {
 // KSP Tasks
 dependencies {
     add("kspCommonMainMetadata", libs.kotlininject.compiler)
-    add("kspJvm", libs.kotlininject.compiler)
-    add("kspWasmJs", libs.kotlininject.compiler)
 }
 
 

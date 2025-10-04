@@ -46,6 +46,7 @@ class UserRepositoryImpl(private val api: UserAPI) : UserRepository {
             } catch (e: Exception) {
                 // Other exceptions
                 println("Response: ${e.message}")
+                emit(Result.failure(e))
             }
 
         }

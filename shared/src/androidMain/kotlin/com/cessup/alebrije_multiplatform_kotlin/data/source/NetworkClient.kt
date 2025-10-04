@@ -12,6 +12,8 @@ actual class NetworkClient {
         install(NetworkExceptionInterceptor)
         install(ContentNegotiation) {
             json(Json {
+                prettyPrint = true
+                isLenient = true
                 ignoreUnknownKeys = true
             })
         }
@@ -21,6 +23,8 @@ actual class NetworkClient {
             socketTimeoutMillis = 5_000
         }
         expectSuccess = false
+
+        install(NetworkExceptionInterceptor)
 
         engine {
             config {

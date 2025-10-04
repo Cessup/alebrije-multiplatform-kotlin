@@ -73,10 +73,13 @@ The data displayed by the alebrije app is from [Chingon API](https://github.com/
 The app uses the following multiplatform dependencies in its implementation:
 
 - [Compose Multiplatform](https://jb.gg/compose) for UI
+- [SQLDelight](https://sqldelight.github.io/sqldelight/2.1.0/) for database
+- [Kotlin-inject](https://github.com/evant/kotlin-inject?tab=readme-ov-file) for dependency injection
 - [Ktor](https://ktor.io/) for networking
 - [kotlinx.serialization](https://github.com/Kotlin/kotlinx.serialization) for JSON handling
 - [Coil](https://coil-kt.github.io/coil/) for image loading
-- [Kotlin-inject](https://github.com/evant/kotlin-inject?tab=readme-ov-file) for dependency injection
+
+
 
 > [!NOTE]
 > `Koin` doesn't support wasm that is the reason for use `kotlin-inject`.

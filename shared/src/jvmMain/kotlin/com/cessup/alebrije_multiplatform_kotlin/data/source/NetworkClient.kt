@@ -9,7 +9,11 @@ import kotlinx.serialization.json.Json
 actual class NetworkClient {
     actual val client = HttpClient(CIO) {
         install(ContentNegotiation) {
-            json(Json { ignoreUnknownKeys = true })
+            json(Json {
+                prettyPrint = true
+                isLenient = true
+                ignoreUnknownKeys = true
+            })
         }
         install(NetworkExceptionInterceptor)
     }
