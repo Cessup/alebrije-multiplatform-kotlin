@@ -1,4 +1,4 @@
-package com.cessup.alebrije_multiplatform_kotlin.data.source
+package com.cessup.alebrije_multiplatform_kotlin.data.source.remote
 
 class AndroidConnection() : Connection {
     override val url: String = "10.0.2.2"

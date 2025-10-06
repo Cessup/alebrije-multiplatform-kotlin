@@ -1,11 +1,16 @@
-package com.cessup.alebrije_multiplatform_kotlin.data.source
+package com.cessup.alebrije_multiplatform_kotlin.data.source.remote
 
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.okhttp.OkHttp
 import io.ktor.client.plugins.HttpTimeout
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.serialization.kotlinx.json.json
+import kotlinx.io.IOException
 import kotlinx.serialization.json.Json
+import java.net.ConnectException
+import java.net.SocketTimeoutException
+import java.net.UnknownHostException
+import java.util.concurrent.TimeUnit
 
 actual class NetworkClient {
     actual val client = HttpClient(OkHttp) {
@@ -28,9 +33,9 @@ actual class NetworkClient {
 
         engine {
             config {
-                connectTimeout(5_000, java.util.concurrent.TimeUnit.MILLISECONDS)
-                readTimeout(5_000, java.util.concurrent.TimeUnit.MILLISECONDS)
-                writeTimeout(5_000, java.util.concurrent.TimeUnit.MILLISECONDS)
+                connectTimeout(5_000, TimeUnit.MILLISECONDS)
+                readTimeout(5_000, TimeUnit.MILLISECONDS)
+                writeTimeout(5_000, TimeUnit.MILLISECONDS)
             }
         }
     }
@@ -38,11 +43,11 @@ actual class NetworkClient {
 
 actual fun isNoInternetException(throwable: Throwable): Boolean {
     return when (throwable) {
-        is java.net.UnknownHostException,
-        is java.net.ConnectException,
-        is java.net.SocketTimeoutException,
+        is UnknownHostException,
+        is ConnectException,
+        is SocketTimeoutException,
         is io.ktor.network.sockets.SocketTimeoutException,
-        is io.ktor.utils.io.errors.IOException -> true
+        is IOException -> true
         else -> false
     }
 }

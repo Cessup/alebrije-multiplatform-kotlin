@@ -1,3 +1,6 @@
+@file:OptIn(ExperimentalKotlinGradlePluginApi::class)
+
+import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
@@ -42,7 +45,16 @@ kotlin {
         binaries.executable()
     }
 
+    compilerOptions {
+        freeCompilerArgs.add("-Xexpect-actual-classes")
+    }
+
     sourceSets {
+
+        all {
+            languageSettings.optIn("kotlin.time.ExperimentalTime")
+        }
+
 
         val commonMain by getting {
             dependencies {
@@ -54,18 +66,26 @@ kotlin {
                 implementation(libs.ktor.client.logging)
                 implementation(libs.runtime)
                 implementation(libs.kotlinx.datetime)
+                implementation("app.cash.sqldelight:runtime:2.1.0")
             }
         }
 
         val jvmMain by getting {
             dependencies{
                 implementation(libs.ktor.client.cio)
+                implementation("app.cash.sqldelight:sqlite-driver:2.1.0")
             }
         }
 
         val wasmJsMain by getting {
             dependencies {
                 implementation(libs.ktor.client.js)
+                implementation("org.jetbrains.kotlinx:kotlinx-browser:0.5.0")
+                implementation("app.cash.sqldelight:web-worker-driver-wasm-js:2.1.0")
+                implementation("app.cash.sqldelight:runtime-wasm-js:2.1.0")
+                //implementation("app.cash.sqldelight:sqlite-driver-js:2.0.2")
+                //implementation(npm("sql.js", "1.12.0"))
+                //implementation(npm("@cashapp/sqldelight-sqljs-worker", "2.0.2"))
             }
         }
 
@@ -74,6 +94,8 @@ kotlin {
                 implementation(libs.ktor.client.android)
                 implementation(libs.ktor.client.okhttp)
                 implementation(libs.android.driver)
+                implementation("app.cash.sqldelight:android-driver:2.1.0")
+                implementation("androidx.work:work-runtime-ktx:2.9.0")
             }
         }
 
@@ -82,6 +104,7 @@ kotlin {
             dependencies {
                 implementation(libs.ktor.client.darwin)
                 implementation(libs.native.driver)
+                implementation("app.cash.sqldelight:native-driver:2.1.0")
             }
         }
 
@@ -126,6 +149,15 @@ android {
     }
 }
 
+sqldelight {
+    databases {
+        create("Database") {
+            packageName.set("com.cessup.alebrije_multiplatform_kotlin.cache")
+            generateAsync.set(true)
+        }
+    }
+}
+
 // KSP Tasks
 dependencies {
     add("kspCommonMainMetadata", libs.kotlininject.compiler)
@@ -137,8 +169,3 @@ tasks.matching { it.name.startsWith("ksp") && it.name != "kspCommonMainKotlinMet
     dependsOn("kspCommonMainKotlinMetadata")
 }
 
-tasks.register<Copy>("copyXCFrameworkToIos") {
-    dependsOn("assembleXCFramework")
-    from(buildDir.resolve("XCFrameworks/debug/shared.xcframework"))
-    into(rootProject.file("iosApp/Frameworks"))
-}

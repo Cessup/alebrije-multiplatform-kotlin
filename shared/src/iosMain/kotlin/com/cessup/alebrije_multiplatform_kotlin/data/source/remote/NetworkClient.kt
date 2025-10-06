@@ -1,4 +1,4 @@
-package com.cessup.alebrije_multiplatform_kotlin.data.source
+package com.cessup.alebrije_multiplatform_kotlin.data.source.remote
 
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.darwin.Darwin

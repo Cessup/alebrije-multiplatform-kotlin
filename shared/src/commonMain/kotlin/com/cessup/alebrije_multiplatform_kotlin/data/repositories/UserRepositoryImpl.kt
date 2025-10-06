@@ -1,7 +1,7 @@
 package com.cessup.alebrije_multiplatform_kotlin.data.repositories
-import com.cessup.alebrije_multiplatform_kotlin.data.source.AuthenticateRequest
-import com.cessup.alebrije_multiplatform_kotlin.data.source.NoInternetException
-import com.cessup.alebrije_multiplatform_kotlin.data.source.UserAPI
+import com.cessup.alebrije_multiplatform_kotlin.data.source.remote.AuthenticateRequest
+import com.cessup.alebrije_multiplatform_kotlin.data.source.remote.NoInternetException
+import com.cessup.alebrije_multiplatform_kotlin.data.source.remote.UserAPI
 import com.cessup.alebrije_multiplatform_kotlin.domain.repositories.UserRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
