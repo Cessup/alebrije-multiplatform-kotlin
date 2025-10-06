@@ -19,7 +19,7 @@ jobs:
       - name: Set up Java
         uses: actions/setup-java@v4
         with:
-          distribution: murine
+          distribution: temurin
           java-version: 17
 
       - name: Set up Node (for Kotlin/JS)
