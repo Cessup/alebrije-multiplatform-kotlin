@@ -12,6 +12,9 @@ jobs:
     name: JVM & JS Build
     runs-on: ubuntu-latest
 
+    env:
+      GRADLE_OPTS: -Xmx6g
+
     steps:
 
       - uses: actions/checkout@v4
@@ -55,6 +58,11 @@ jobs:
           restore-keys: |
             gradle-${{ runner.os }}-
 
+      - name: Configure Gradle
+        run: |
+          echo "org.gradle.daemon=true" >> gradle.properties
+          echo "org.gradle.caching=true" >> gradle.properties
+          echo "org.gradle.parallel=true" >> gradle.properties
 
   # --- Native (macOS)
   build-macos:
