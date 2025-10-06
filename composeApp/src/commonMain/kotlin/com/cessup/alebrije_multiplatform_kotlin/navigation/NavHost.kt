@@ -3,15 +3,12 @@ package com.cessup.alebrije_multiplatform_kotlin.navigation
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
-import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import androidx.navigation.navigation
-import androidx.savedstate.SavedState
-import androidx.navigation.get
 import com.cessup.alebrije_multiplatform_kotlin.ui.eatable.DrinksScreen
 import com.cessup.alebrije_multiplatform_kotlin.ui.home.HomeScreen
 import com.cessup.alebrije_multiplatform_kotlin.ui.network.NetworkErrorScreen

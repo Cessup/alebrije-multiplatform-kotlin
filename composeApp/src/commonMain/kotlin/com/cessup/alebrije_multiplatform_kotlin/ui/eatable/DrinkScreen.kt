@@ -39,9 +39,8 @@ import coil3.compose.AsyncImage
  * @since 1.0
  */
 @Composable
-fun DrinksScreen(viewModel: DrinkViewModel = viewModel { DrinkViewModel() } ) {
+fun DrinksScreen( ) {
 
-    val beers by viewModel.beers.collectAsState()
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -69,9 +68,9 @@ fun DrinksScreen(viewModel: DrinkViewModel = viewModel { DrinkViewModel() } ) {
             horizontalArrangement = Arrangement.spacedBy(8.dp),
             contentPadding = PaddingValues(horizontal = 8.dp)
         ){
-            items(beers) {beer->
-                ListItem(beer)
-            }
+            //items(beers) {beer->
+            //    ListItem(beer)
+            //}
         }
     }
 }
