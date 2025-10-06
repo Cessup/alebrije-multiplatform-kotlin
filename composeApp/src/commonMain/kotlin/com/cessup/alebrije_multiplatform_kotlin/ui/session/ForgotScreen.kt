@@ -38,8 +38,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
  */
 @Composable
 fun ForgotScreen(
-    onNextOnClick: () -> Unit,
-    viewModel: ForgotViewModel = viewModel { ForgotViewModel() }
+    onNextOnClick: () -> Unit
 ) {
     var email by remember { mutableStateOf("") }
 

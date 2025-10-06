@@ -5,18 +5,20 @@
 //  Created by Cess UP on 28/09/25.
 //
 
-
+import Shared
 import SwiftUI
 
 struct SignInView: View {
 	@State private var email = ""
-	@State private var password = ""
+	@State private var keyword = ""
+	@StateObject private var viewModel = SignInViewModelWrapper()
+	@State private var navigateToHome = false
+	
 	
 	var body: some View {
 		VStack {
 			Spacer()
 			
-			// Card-like container
 			VStack(spacing: 16) {
 				Text("Sign In")
 					.font(.title)
@@ -26,24 +28,36 @@ struct SignInView: View {
 					.textFieldStyle(.roundedBorder)
 					.keyboardType(.emailAddress)
 				
-				SecureField("Password", text: $password)
+				SecureField("Password", text: $keyword)
 					.textFieldStyle(.roundedBorder)
 				
-				NavigationLink("Forgot password?", destination: ForgotPasswordView())
-					.font(.footnote)
-					.frame(maxWidth: .infinity, alignment: .trailing)
+				if let errorState = viewModel.currentState as? UiStateNetworkError {
+					Text(errorState.message)
+						.foregroundColor(.red)
+				}
 				
-				NavigationLink("Sign In", destination: HomeView())
-					.buttonStyle(.borderedProminent)
+				if viewModel.currentState is UiStateLoading {
+					ProgressView()
+				}
+				
+				Button("Sign In") {
+					viewModel.signInAction(email: email, keyword: keyword)
+				}
+				.buttonStyle(.borderedProminent)
+				
 			}
 			.padding()
 			.background(Color(.systemGray6))
 			.cornerRadius(12)
 			.padding()
 			
+			// 👇 This is what handles the navigation
+			.navigationDestination(isPresented: $navigateToHome) {
+				HomeView()
+			}
+			
 			Spacer()
 			
-			// Bottom sign up message
 			HStack {
 				Text("Don't have an account?")
 				NavigationLink("Sign Up", destination: SignUpView())
@@ -51,9 +65,16 @@ struct SignInView: View {
 			.font(.footnote)
 			.padding(.bottom)
 		}
+		.onReceive(viewModel.$currentState) { newState in
+			if newState is UiStateSuccess {
+				navigateToHome = true
+			}
+		}
+
 	}
 }
 
 #Preview {
 	SignInView()
 }
+

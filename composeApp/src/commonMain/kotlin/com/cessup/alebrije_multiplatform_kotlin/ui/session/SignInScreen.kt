@@ -10,6 +10,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.cessup.alebrije_multiplatform_kotlin.di.AppGraph
+import com.cessup.alebrije_multiplatform_kotlin.presentation.UiState
 
 /**
  * The Sign In View is the interface to user to access system
@@ -20,12 +22,13 @@ import androidx.lifecycle.viewmodel.compose.viewModel
  */
 @Composable
 fun SignInScreen(
-    viewModel: SignInViewModel = viewModel { SignInViewModel() },
     onNavNetworkError: (String) -> Unit,
     onSignInClick: (String) -> Unit,
     onRegisterClick: () -> Unit,
     onForgotPasswordClick: () -> Unit,
 ) {
+    val viewModel = remember { AppGraph.component.signInViewModel }
+
     val state by viewModel.uiState.collectAsState()
 
 
@@ -161,12 +164,4 @@ fun SignInContent(
             Text("Don’t have an account? Sign up.")
         }
     }
-}
-
-sealed class UiState {
-    object Normal : UiState()
-    object Loading : UiState()
-    data class NetworkError(val message: String) : UiState()
-    data class Success(val data: String) : UiState()
-    data class Error(val message: String) : UiState()
 }

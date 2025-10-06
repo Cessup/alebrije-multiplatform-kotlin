@@ -6,6 +6,19 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXCopyFilesBuildPhase section */
+		9CC1A08D2E90F9CE00023E95 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		8B94C98A0F2C0980E9729DB7 /* alebrije_multiplatform_kotlin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = alebrije_multiplatform_kotlin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -20,14 +33,30 @@
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
+/* Begin PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
+		9CC1A08E2E90F9CE00023E95 /* Exceptions for "Frameworks" folder in "Embed Frameworks" phase from "iosApp" target */ = {
+			isa = PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet;
+			attributesByRelativePath = {
+				shared.xcframework = (RemoveHeadersOnCopy, );
+			};
+			buildPhase = 9CC1A08D2E90F9CE00023E95 /* Embed Frameworks */;
+			membershipExceptions = (
+				shared.xcframework,
+			);
+		};
+/* End PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		7ABA0F19B5B194D8357202DB /* Configuration */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = Configuration;
 			sourceTree = "<group>";
 		};
-		9CF185552E8A5863009DB6D5 /* Frameworks */ = {
+		9CC1A07F2E90F6FB00023E95 /* Frameworks */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				9CC1A08E2E90F9CE00023E95 /* Exceptions for "Frameworks" folder in "Embed Frameworks" phase from "iosApp" target */,
+			);
 			path = Frameworks;
 			sourceTree = "<group>";
 		};
@@ -55,7 +84,7 @@
 		0A6DBA670ADEA5937AFD1197 = {
 			isa = PBXGroup;
 			children = (
-				9CF185552E8A5863009DB6D5 /* Frameworks */,
+				9CC1A07F2E90F6FB00023E95 /* Frameworks */,
 				7ABA0F19B5B194D8357202DB /* Configuration */,
 				9D5DB83A4009FEDFF6C4F32B /* iosApp */,
 				F65E0AFB220625E02BC2D490 /* Products */,
@@ -81,13 +110,14 @@
 				34058963F4F1466A7677E43F /* Sources */,
 				9DEA1C62D0DDC25D79D2E40B /* Frameworks */,
 				8F7C18D4A47D2BE69997B0E1 /* Resources */,
+				9CC1A08D2E90F9CE00023E95 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				9CF185552E8A5863009DB6D5 /* Frameworks */,
+				9CC1A07F2E90F6FB00023E95 /* Frameworks */,
 				9D5DB83A4009FEDFF6C4F32B /* iosApp */,
 			);
 			name = iosApp;
@@ -183,6 +213,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"iosApp/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Frameworks/ios-arm64",
+					"$(PROJECT_DIR)/Frameworks/ios-arm64_x86_64-simulator",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = iosApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -336,6 +371,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"iosApp/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Frameworks/ios-arm64",
+					"$(PROJECT_DIR)/Frameworks/ios-arm64_x86_64-simulator",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = iosApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;

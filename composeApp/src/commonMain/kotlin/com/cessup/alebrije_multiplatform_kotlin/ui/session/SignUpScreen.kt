@@ -25,10 +25,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
-import com.cessup.alebrije_multiplatform_kotlin.ui.eatable.DrinkViewModel
-import com.cessup.alebrije_multiplatform_kotlin.ui.theme.AlebrijeTheme
-import org.jetbrains.compose.ui.tooling.preview.Preview
 
 /**
  * The Sign Un View is the interface to user register system
@@ -39,8 +35,7 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
  */
 @Composable
 fun SignUpScreen(
-    onSignUpClick: () -> Unit,
-    viewModel: SignInViewModel = viewModel { SignInViewModel() }
+    onSignUpClick: () -> Unit
 ) {
 
     var username by remember { mutableStateOf("") }
